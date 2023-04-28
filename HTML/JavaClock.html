@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Test</title>
+        <link rel="stylesheet" href="file:///C:/Users/barbo/Desktop/Codes/WEB/CSS/JavaClock.css">
+    </head>
+    <body>
+        <input type="text" autocomplete="off" class="search-box" placeholder="Search for a city..." />
+        <div class="wrapper" onclick="changeValue()">
+            <div class="display">
+                <div id="day"></div>
+                <div id="time"></div>
+                <div id="Location"></div>
+                <div id="Weather"></div>
+            </div>
+            <span></span>
+            <span></span>
+        </div>
+
+        <script>
+            const changeValue = () =>{
+                let Location = document.querySelector("#Location")
+                let Weather = document.querySelector('#Weather')
+                let day = document.querySelector('#day')
+                let time = document.querySelector('#time')
+                let search = document.querySelector('.search-box')
+                if (day.style.display == "none"){
+                    Location.style.display="none"
+                    Weather.style.display="none"
+                    day.style.display="block"
+                    time.style.display="block"
+                    search.style.display="none"
+                }else{
+                    Location.style.display="block"
+                    Weather.style.display="block"
+                    day.style.display="none"
+                    time.style.display="none"
+                    search.style.display="block"
+                }
+            }
+
+            setInterval(()=>{
+                const searchbox = document.querySelector('.search-box');
+                searchbox.addEventListener('keypress', enter);
+                function enter(event) {
+                    key = event.keyCode
+                    if (key == 13) {
+                        searchResults(searchbox.value);
+                    }
+                }
+                function searchResults(Location) {
+                    
+                }
+                let Location = document.querySelector("#Location")
+                
+                let Weather = document.querySelector('#Weather')
+                
+                const day = document.querySelector("#day");
+                let date = new Date();
+                let day_number = date.getDate();
+                let year = date.getFullYear();
+                let week_day = date.getDay();
+                let mon = date.getMonth();
+                var months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+                var week_names = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+                
+                const time = document.querySelector("#time");
+                let numembers = new Date();
+                let hours = numembers.getHours();
+                let minutes = numembers.getMinutes();
+                let seconds = numembers.getSeconds();
+                let day_night = "AM";
+                
+                if(hours > 12){
+                    day_night = "PM";
+                    hours = hours - 12;
+                }
+                if(hours < 10){
+                    hours = "0" + hours;
+                }
+                if(minutes < 10){
+                    minutes = "0" + minutes;
+                }
+                if(seconds < 10){
+                    seconds = "0" + seconds;
+                }
+                
+                Location.textContent = "Cidade, Pais";
+                Weather.textContent = "XX" + "ºC " + "Nublado";
+                time.textContent = hours + ":" + minutes + ":" + seconds + " " + day_night;
+                day.textContent = day_number + ", " + week_names[week_day] + ", " + months[mon] + ", " + year ;
+            });
+            
+        </script>
+    </body>
+</html>
